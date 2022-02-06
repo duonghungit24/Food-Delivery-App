@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, StyleSheet, StatusBar} from 'react-native';
-import Header from './src/components/Header';
 import {Colors} from './src/global/styles'
+import SignInScreen from './src/screens/authScreens/SignInScreen';
 const App = () => {
   return (
     <View style={styles.container}>
       <StatusBar  barStyle='light-content' backgroundColor={Colors.statusbar}/>
-       <Header title="Tài Khoản" type="arrow-left"/>
+     <SignInScreen />
     </View>
   );
 };
