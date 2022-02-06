@@ -6,7 +6,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       <StatusBar  barStyle='light-content' backgroundColor={Colors.statusbar}/>
-       <Header title="Tài Khoản"/>
+       <Header title="Tài Khoản" type="arrow-left"/>
     </View>
   );
 };
