@@ -8,11 +8,46 @@ export const Colors = {
   CardComment: '#86939e',
   cardbackground: 'white',
   statusbar: '#ff8c52',
-  headerText: 'white'
+  headerText: 'white',
 };
 
 export const Parameters = {
   headerHeight: 50,
+  styleButton: {
+    backgroundColor: '#ff8c52',
+    alignContent: 'center',
+    justifyContent: 'center',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#ff8c52',
+    height: 50,
+    paddingHorizontal: 20,
+    with: '100%',
+  },
+  buttonTitle: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  createBtn: {
+    backgroundColor: 'white',
+    alignContent: 'center',
+    justifyContent: 'center',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#ff8c52',
+    height: 40,
+    paddingHorizontal: 20,    
+  },
+  createBtnTitle : {
+    color: '#ff8c52',
+    fontSize: 16,
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 };
 
 export const Title = {color: '#ff8c52', fontSize: 20, fontWeight: '700'};

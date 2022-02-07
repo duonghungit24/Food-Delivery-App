@@ -1,11 +1,11 @@
 import React, {useState, useRef} from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
 import {Colors, Parameters, Title} from '../../global/styles';
-import {Icon} from 'react-native-elements';
+import {Icon, Button, SocialIcon} from 'react-native-elements';
 import Header from '../../components/Header';
 import * as Animatable from 'react-native-animatable';
 export default function SignInScreen() {
-  const [textInput2Fossued, setTextInput2Fossued] = useState(false);
+  const [textInput2Focused, setTextInput2Focused] = useState(false);
   const textInput1 = useRef(1);
   const textInput2 = useRef(2);
   return (
@@ -28,7 +28,7 @@ export default function SignInScreen() {
         </View>
         <View style={styles.TextInput2}>
           <Animatable.View
-            animation={textInput2Fossued ? '' : 'fadeInLeft'}
+            animation={textInput2Focused ? '' : 'fadeInLeft'}
             duration={400}>
             <Icon name="lock" color={Colors.grey3} type="material"></Icon>
           </Animatable.View>
@@ -37,14 +37,14 @@ export default function SignInScreen() {
             placeholder="Password"
             ref={textInput2}
             onFocus={() => {
-              setTextInput2Fossued(false);
+              setTextInput2Focused(false);
             }}
             onBlur={() => {
-              setTextInput2Fossued(true);
+              setTextInput2Focused(true);
             }}
           />
           <Animatable.View
-            animation={textInput2Fossued ? '' : 'fadeInLeft'}
+            animation={textInput2Focused ? '' : 'fadeInLeft'}
             duration={400}>
             <Icon
               style={{marginRight: 10}}
@@ -53,6 +53,49 @@ export default function SignInScreen() {
               type="material"></Icon>
           </Animatable.View>
         </View>
+      </View>
+      <View style={styles.button}>
+        <Button
+          buttonStyle={Parameters.styleButton}
+          title="Đăng nhập"
+          titleStyle={Parameters.buttonTitle}
+        />
+      </View>
+      <View style={{alignItems: 'center'}}>
+        <Text style={{...styles.text1, textDecorationLine: 'underline'}}>
+          Quên mật khẩu ?
+        </Text>
+      </View>
+      <View style={{alignItems: 'center', marginTop: 20, marginBottom: 20}}>
+        <Text style={{fontSize: 18, fontWeight: 'bold'}}>Hoặc</Text>
+      </View>
+      <View style={{marginHorizontal: 10, marginTop: 5}} >
+        <SocialIcon
+          type="facebook"
+          button
+          title="Đăng nhập với Facebook"
+          style={styles.socialIcon}
+          onPress={() => {}}
+        />
+      </View>
+      <View style={{marginHorizontal: 10, marginTop: 10}}>
+        <SocialIcon
+          type="google"
+          button
+          title="Đăng nhập với Google"
+          style={styles.socialIcon}
+          onPress={() => {}}
+        />
+      </View>
+      <View style={{marginTop:10, marginLeft:20}}>
+        <Text style={{...styles.text1}}>Đồ ăn nhanh mới ?</Text>
+      </View>
+      <View style={{position:'absolute', width:'50%' , right: 20, bottom: 40}}>
+        <Button 
+            title="Tạo tài khoản"
+            buttonStyle = {Parameters.createBtn}
+            titleStyle = {Parameters.createBtnTitle}
+        />
       </View>
     </View>
   );
@@ -88,4 +131,13 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     alignItems: 'center',
   },
+  button: {
+    marginHorizontal: 20,
+    marginVertical: 20,
+  },
+  socialIcon: {
+    height: 50,
+    borderRadius: 12,  
+  },
+ 
 });
