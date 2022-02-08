@@ -1,14 +1,12 @@
 import React from 'react';
 import {View, StyleSheet, StatusBar} from 'react-native';
 import {Colors} from './src/global/styles'
-import SignInScreen from './src/screens/authScreens/SignInScreen';
-import SignInWellcomeScreen from './src/screens/authScreens/SigInWellcomeScreen';
+import RootStack from './src/navigation/RootNavigator';
 const App = () => {
   return (
     <View style={styles.container}>
       <StatusBar  barStyle='light-content' backgroundColor={Colors.statusbar}/>
-     {/* <SignInScreen /> */}
-     <SignInWellcomeScreen />
+      <RootStack />
     </View>
   );
 };
