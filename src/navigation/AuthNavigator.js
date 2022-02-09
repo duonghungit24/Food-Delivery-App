@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import SignInWellcomeScreen from '../screens/authScreens/SigInWellcomeScreen';
 import SignInScreen from '../screens/authScreens/SignInScreen';
 const Auth = createStackNavigator();
@@ -11,6 +11,7 @@ export default function AuthStack() {
         component={SignInWellcomeScreen}
         options = {{
             headerShown : false,
+           
         }}
       />
       <Auth.Screen
@@ -18,6 +19,7 @@ export default function AuthStack() {
         component={SignInScreen}
         options = {{
             headerShown : false,
+            
         }}
       />
     </Auth.Navigator>

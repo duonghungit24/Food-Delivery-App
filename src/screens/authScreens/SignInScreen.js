@@ -4,13 +4,16 @@ import {Colors, Parameters, Title} from '../../global/styles';
 import {Icon, Button, SocialIcon} from 'react-native-elements';
 import Header from '../../components/Header';
 import * as Animatable from 'react-native-animatable';
-export default function SignInScreen() {
+export default function SignInScreen({navigation}) {
   const [textInput2Focused, setTextInput2Focused] = useState(false);
   const textInput1 = useRef(1);
   const textInput2 = useRef(2);
+  const goBackHandle = () => {
+      navigation.goBack();
+  }
   return (
     <View style={styles.container}>
-      <Header title="Tài Khoản" type="arrow-left" />
+      <Header title="Tài Khoản" type="arrow-left" goBackFunc = {goBackHandle} />
       <View style={{marginTop: 10, marginLeft: 20}}>
         <Text style={Title}>Đăng Nhập</Text>
       </View>

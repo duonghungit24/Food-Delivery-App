@@ -4,7 +4,7 @@ import {Colors, Parameters, Title} from '../../global/styles';
 import {Icon, Button, SocialIcon} from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
 import Swiper from 'react-native-swiper';
-export default function SignInWellcomeScreen() {
+export default function SignInWellcomeScreen({navigation}) {
   return (
     <View style={{flex: 1}}>
       <View
@@ -64,6 +64,7 @@ export default function SignInWellcomeScreen() {
             buttonStyle={Parameters.styleButton}
             title="Đăng nhập"
             titleStyle={Parameters.buttonTitle}
+            onPress={() => {navigation.navigate('SignInScreen')}}
           />
         </View>
         <View style={styles.btnCreateAcc}>
