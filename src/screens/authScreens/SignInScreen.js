@@ -62,6 +62,9 @@ export default function SignInScreen({navigation}) {
           buttonStyle={Parameters.styleButton}
           title="Đăng nhập"
           titleStyle={Parameters.buttonTitle}
+          onPress={() => {
+            navigation.navigate('HomeScreen');
+          }}
         />
       </View>
       <View style={{alignItems: 'center'}}>
