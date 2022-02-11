@@ -15,53 +15,35 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <HomeHeader />
       <ScrollView
-        stickyHeaderIndices={[10]} // dùng cái này để khi scroll cái component đầu tiên k bị scroll
+        stickyHeaderIndices={[0]} // dùng cái này để khi scroll cái component đầu tiên k bị scroll
         showsVerticalScrollIndicator={true} // show thanh scroll
       >
-        <View
-          style={{
-            marginTop: 10,
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-          }}>
-          <TouchableOpacity onPress={() => setSelected(true)}>
-            <View
-              style={{
-                ...styles.btnSelect,
-                backgroundColor: selected ? Colors.buttons : Colors.grey5,
-              }}>
-              <Text>Delivery</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setSelected(false)}>
-            <View
-              style={{
-                ...styles.btnSelect,
-                backgroundColor: !selected ? Colors.buttons : Colors.grey5,
-              }}>
-              <Text>Pick Up</Text>
-            </View>
-          </TouchableOpacity>
+        <View>
+          <View style={styles.wrapSelect}>
+            <TouchableOpacity onPress={() => setSelected(true)}>
+              <View
+                style={{
+                  ...styles.btnSelect,
+                  backgroundColor: selected ? Colors.buttons : Colors.grey5,
+                }}>
+                <Text>Delivery</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setSelected(false)}>
+              <View
+                style={{
+                  ...styles.btnSelect,
+                  backgroundColor: !selected ? Colors.buttons : Colors.grey5,
+                }}>
+                <Text>Pick Up</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={{borderRadius: 30}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              alignItems: 'center',
-              marginTop: 20,
-            }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                backgroundColor: Colors.grey5,
-                paddingHorizontal: 15,
-                paddingVertical: 5,
-                marginLeft: 5,
-                borderRadius:30
-              }}>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View>
+          <View style={styles.wrapLocation}>
+            <View style={styles.wrapViewLocation}>
+              <View style={styles.wrapAddress}>
                 <Icon
                   type="material-community"
                   name="map-marker"
@@ -70,17 +52,7 @@ export default function HomeScreen() {
                 />
                 <Text>160 Quang Trung</Text>
               </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginLeft: 20,
-                  backgroundColor: Colors.cardbackground,
-                  paddingHorizontal: 15,
-                  paddingVertical: 5,
-                  marginRight: 20,
-                  borderRadius: 12,
-                }}>
+              <View style={styles.wrapClock}>
                 <Icon
                   type="material-community"
                   name="clock-time-four"
@@ -101,6 +73,9 @@ export default function HomeScreen() {
             </View>
           </View>
         </View>
+        <View style={styles.headerWrapText}>
+          <Text style={styles.headerText}>Danh Mục</Text>
+        </View>
       </ScrollView>
     </View>
   );
@@ -113,5 +88,51 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 10,
     borderRadius: 15,
+  },
+  wrapSelect: {
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  wrapLocation: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginTop: 15,
+  },
+  wrapViewLocation: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: Colors.grey5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginLeft: 5,
+    borderRadius: 30,
+  },
+  headerWrapText: {
+    backgroundColor: Colors.grey5,
+    marginVertical: 10,
+    paddingVertical: 8,
+  },
+  wrapAddress: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 10,
+  },
+  wrapClock: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 20,
+    backgroundColor: Colors.cardbackground,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    marginRight: 20,
+    borderRadius: 16,
+  },
+  headerText: {
+    color: Colors.grey2,
+    fontSize: 22,
+    fontWeight: 'bold',
+    paddingLeft: 10,
   },
 });
