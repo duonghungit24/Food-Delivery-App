@@ -96,7 +96,7 @@ export default function SignInScreen({navigation}) {
       <View style={{marginTop:10, marginLeft:20}}>
         <Text style={{...styles.text1}}>Đồ ăn nhanh mới ?</Text>
       </View>
-      <View style={{position:'absolute', width:'50%' , right: 20, bottom: 40}}>
+      <View style={{justifyContent:'flex-end', width:'50%', left:'46%',top:'6%'}}>
         <Button 
             title="Tạo tài khoản"
             buttonStyle = {Parameters.createBtn}
