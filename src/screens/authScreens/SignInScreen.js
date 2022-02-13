@@ -63,7 +63,7 @@ export default function SignInScreen({navigation}) {
           title="Đăng nhập"
           titleStyle={Parameters.buttonTitle}
           onPress={() => {
-            navigation.navigate('HomeScreen');
+            navigation.navigate('ClientTabs');
           }}
         />
       </View>

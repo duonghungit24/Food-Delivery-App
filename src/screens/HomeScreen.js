@@ -15,6 +15,7 @@ import {Icon} from 'react-native-elements';
 import HomeHeader from '../components/HomeHeader';
 import {filterData, restaurantsData} from '../global/Data';
 import FoodCard from '../components/FoodCart';
+import CountDown from 'react-native-countdown-component';
 const Screen_Width = Dimensions.get('window').width;
 export default function HomeScreen() {
   const [selected, setSelected] = useState(true);
@@ -117,6 +118,17 @@ export default function HomeScreen() {
           <Text style={styles.headerText}>Giao hàng miễn phí bây giờ</Text>
         </View>
         <View>
+          <View style={styles.countdown}>
+                <Text style={styles.textCountdown}>Thay đổi trong</Text>
+                <CountDown 
+                    until={3600}
+                    size={14}
+                    digitStyle={{backgroundColor:Colors.lighGreen}}
+                    digitTxtStyle = {{color:Colors.cardbackground}}
+                    timeToShow = {['M', 'S']}
+                    timeLabels = {{m:'Phút', s: 'Giây'}}
+                />
+          </View>
           <FlatList
             data={restaurantsData}
             horizontal
@@ -268,4 +280,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: Colors.cardbackground,
   },
+  countdown: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  textCountdown: {
+    color: Colors.grey1,
+    marginTop:-15,
+    marginLeft: 10,
+    marginRight: 10,
+    fontWeight: 'bold',
+    fontSize:16
+  }
 });

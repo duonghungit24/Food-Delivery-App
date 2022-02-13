@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import SignInWellcomeScreen from '../screens/authScreens/SigInWellcomeScreen';
 import SignInScreen from '../screens/authScreens/SignInScreen';
-import HomeScreen from '../screens/HomeScreen'
+import RootClientTabs from '../navigation/ClientTabs'
 const Auth = createStackNavigator();
 export default function AuthStack() {
   return (
@@ -24,8 +24,8 @@ export default function AuthStack() {
         }}
       />
       <Auth.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="ClientTabs"
+        component={RootClientTabs}
         options = {{
             headerShown : false,
             ...TransitionPresets.RevealFromBottomAndroid
