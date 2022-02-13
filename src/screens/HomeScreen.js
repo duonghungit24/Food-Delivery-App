@@ -8,7 +8,7 @@ import {
   FlatList,
   Pressable,
   Image,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import {Colors} from '../global/styles';
 import {Icon} from 'react-native-elements';
@@ -26,7 +26,7 @@ export default function HomeScreen() {
         stickyHeaderIndices={[0]} // dùng cái này để khi scroll cái component đầu tiên k bị scroll
         showsVerticalScrollIndicator={true} // show thanh scroll
       >
-        <View>
+        <View style={{backgroundColor:Colors.cardbackground, paddingBottom: 10}}> 
           <View style={styles.wrapSelect}>
             <TouchableOpacity onPress={() => setSelected(true)}>
               <View
@@ -100,7 +100,14 @@ export default function HomeScreen() {
                       : styles.smallCard
                   }>
                   <Image source={item.image} style={{height: 55, width: 55}} />
-                  <Text style={indexCheck === item.id ? styles.smallCardTextSelected : styles.smallCardText}>{item.name}</Text>
+                  <Text
+                    style={
+                      indexCheck === item.id
+                        ? styles.smallCardTextSelected
+                        : styles.smallCardText
+                    }>
+                    {item.name}
+                  </Text>
                 </View>
               </Pressable>
             )}
@@ -110,26 +117,67 @@ export default function HomeScreen() {
           <Text style={styles.headerText}>Giao hàng miễn phí bây giờ</Text>
         </View>
         <View>
-          <FlatList 
-              style={{marginBottom:10}}
-              data={restaurantsData}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({item}) => (
-                <View>
-                  <FoodCard
-                      screenWidth={Screen_Width*0.8}
-                      images={item.images}
-                      restaurantName={item.restaurantName}
-                      farAway = {item.farAway}
-                      averageReview={item.averageReview}
-                      businessAddress={item.businessAddress}
-                      numberOfReview={item.numberOfReview}
-                  />
-                </View>
-              )}
+          <FlatList
+            data={restaurantsData}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => (
+              <View>
+                <FoodCard
+                  screenWidth={Screen_Width * 0.8}
+                  images={item.images}
+                  restaurantName={item.restaurantName}
+                  farAway={item.farAway}
+                  averageReview={item.averageReview}
+                  businessAddress={item.businessAddress}
+                  numberOfReview={item.numberOfReview}
+                />
+              </View>
+            )}
           />
+        </View>
+        <View style={styles.headerWrapText}>
+          <Text style={styles.headerText}>Khuyến mãi</Text>
+        </View>
+        <View>
+          <FlatList
+            data={restaurantsData}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => (
+              <View>
+                <FoodCard
+                  screenWidth={Screen_Width * 0.8}
+                  images={item.images}
+                  restaurantName={item.restaurantName}
+                  farAway={item.farAway}
+                  averageReview={item.averageReview}
+                  businessAddress={item.businessAddress}
+                  numberOfReview={item.numberOfReview}
+                />
+              </View>
+            )}
+          />
+        </View>
+        <View style={styles.headerWrapText}>
+          <Text style={styles.headerText}>Nhà hàng gần bạn</Text>
+        </View>
+        <View>
+          {restaurantsData.map(item => (
+            <View key={item.id} style={{marginBottom: 10}}>
+              <FoodCard
+                screenWidth={Screen_Width - 22}
+                images={item.images}
+                restaurantName={item.restaurantName}
+                farAway={item.farAway}
+                averageReview={item.averageReview}
+                businessAddress={item.businessAddress}
+                numberOfReview={item.numberOfReview}
+              />
+            </View>
+          ))}
         </View>
       </ScrollView>
     </View>
@@ -214,10 +262,10 @@ const styles = StyleSheet.create({
   },
   smallCardText: {
     fontWeight: 'bold',
-    color:Colors.grey2,
+    color: Colors.grey2,
   },
   smallCardTextSelected: {
     fontWeight: 'bold',
-    color:Colors.cardbackground,
-  }
+    color: Colors.cardbackground,
+  },
 });
