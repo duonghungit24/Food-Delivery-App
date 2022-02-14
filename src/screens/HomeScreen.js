@@ -17,7 +17,7 @@ import {filterData, restaurantsData} from '../global/Data';
 import FoodCard from '../components/FoodCart';
 import CountDown from 'react-native-countdown-component';
 const Screen_Width = Dimensions.get('window').width;
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   const [selected, setSelected] = useState(true);
   const [indexCheck, setIndexCheck] = useState('0');
   return (
@@ -27,7 +27,8 @@ export default function HomeScreen() {
         stickyHeaderIndices={[0]} // dùng cái này để khi scroll cái component đầu tiên k bị scroll
         showsVerticalScrollIndicator={true} // show thanh scroll
       >
-        <View style={{backgroundColor:Colors.cardbackground, paddingBottom: 10}}> 
+        <View
+          style={{backgroundColor: Colors.cardbackground, paddingBottom: 10}}>
           <View style={styles.wrapSelect}>
             <TouchableOpacity onPress={() => setSelected(true)}>
               <View
@@ -38,7 +39,11 @@ export default function HomeScreen() {
                 <Text>Delivery</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setSelected(false)}>
+            <TouchableOpacity
+              onPress={() => {
+                setSelected(false);
+                navigation.navigate('RestaurantsMapScreen');
+              }}>
               <View
                 style={{
                   ...styles.btnSelect,
@@ -119,15 +124,15 @@ export default function HomeScreen() {
         </View>
         <View>
           <View style={styles.countdown}>
-                <Text style={styles.textCountdown}>Thay đổi trong</Text>
-                <CountDown 
-                    until={3600}
-                    size={14}
-                    digitStyle={{backgroundColor:Colors.lighGreen}}
-                    digitTxtStyle = {{color:Colors.cardbackground}}
-                    timeToShow = {['M', 'S']}
-                    timeLabels = {{m:'Phút', s: 'Giây'}}
-                />
+            <Text style={styles.textCountdown}>Thay đổi trong</Text>
+            <CountDown
+              until={3600}
+              size={14}
+              digitStyle={{backgroundColor: Colors.lighGreen}}
+              digitTxtStyle={{color: Colors.cardbackground}}
+              timeToShow={['M', 'S']}
+              timeLabels={{m: 'Phút', s: 'Giây'}}
+            />
           </View>
           <FlatList
             data={restaurantsData}
@@ -192,6 +197,20 @@ export default function HomeScreen() {
           ))}
         </View>
       </ScrollView>
+      {selected && (
+        <View style={styles.floatButton}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('RestaurantsMapScreen')}>
+            <Icon
+              type="material"
+              name="place"
+              size={32}
+              color={Colors.buttons}
+            />
+            <Text style={{color: Colors.grey2}}>Map</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }
@@ -286,10 +305,21 @@ const styles = StyleSheet.create({
   },
   textCountdown: {
     color: Colors.grey1,
-    marginTop:-15,
+    marginTop: -15,
     marginLeft: 10,
     marginRight: 10,
     fontWeight: 'bold',
-    fontSize:16
-  }
+    fontSize: 16,
+  },
+  floatButton: {
+    position: 'absolute',
+    width: 60,
+    height: 60,
+    backgroundColor: 'white',
+    elevation: 10,
+    right: 15,
+    bottom: 10,
+    borderRadius: 30,
+    alignItems: 'center',
+  },
 });
