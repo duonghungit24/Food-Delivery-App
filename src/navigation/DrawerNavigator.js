@@ -14,7 +14,7 @@ export default function DrawerNavigator() {
         name="ClientTabs"
         component={RootClientTabs}
         options={{
-          title: 'Client',
+          title: 'Trang chủ',
           drawerIcon: ({focussed, size}) => (
             <Icon
               type="material-community"
@@ -29,7 +29,7 @@ export default function DrawerNavigator() {
         name="BusinessConsole"
         component={BusinessConsole}
         options={{
-          title: 'Business console',
+          title: 'Đăng kí làm đối tác',
           drawerIcon: ({focussed, size}) => (
             <Icon
               type="material"

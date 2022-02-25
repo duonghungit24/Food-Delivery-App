@@ -73,6 +73,7 @@ export default function SignInWellcomeScreen({navigation}) {
             buttonStyle={{...Parameters.createBtn, height:50}}
             title="Tạo tài khoản"
             titleStyle={Parameters.createBtnTitle}
+            onPress={() => {navigation.navigate("SignUpScreen")}}
           />
         </View>
       </View>

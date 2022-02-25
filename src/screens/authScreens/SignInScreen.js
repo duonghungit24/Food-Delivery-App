@@ -8,12 +8,9 @@ export default function SignInScreen({navigation}) {
   const [textInput2Focused, setTextInput2Focused] = useState(false);
   const textInput1 = useRef(1);
   const textInput2 = useRef(2);
-  const goBackHandle = () => {
-      navigation.goBack();
-  }
   return (
     <View style={styles.container}>
-      <Header title="Tài Khoản" type="arrow-left" goBackFunc = {goBackHandle} />
+      <Header title="Tài Khoản" type="arrow-left" navigation = {navigation} />
       <View style={{marginTop: 10, marginLeft: 20}}>
         <Text style={Title}>Đăng Nhập</Text>
       </View>
@@ -101,6 +98,7 @@ export default function SignInScreen({navigation}) {
             title="Tạo tài khoản"
             buttonStyle = {Parameters.createBtn}
             titleStyle = {Parameters.createBtnTitle}
+            onPress={() => {navigation.navigate('SignUpScreen')}}
         />
       </View>
     </View>
