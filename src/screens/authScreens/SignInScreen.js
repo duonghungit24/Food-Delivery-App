@@ -50,7 +50,7 @@ export default function SignInScreen({navigation}) {
               style={{marginRight: 10}}
               name="visibility-off"
               color={Colors.grey3}
-              type="material"></Icon>
+              type="material" />
           </Animatable.View>
         </View>
       </View>
