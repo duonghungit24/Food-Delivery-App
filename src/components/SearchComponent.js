@@ -43,12 +43,15 @@ export default function SearchComponent() {
         <View style={styles.modal}>
           <View style={styles.view1}>
             <View style={styles.TextInput}>
+              <Animatable.View
+                anaimation={textInputFossued ? 'fadeInRight' : 'fadeInLeft'}
+                duration={400}></Animatable.View>
               <Animatable.View>
                 <Icon
                   name={textInputFossued ? 'arrow-back' : 'search'}
                   onPress={() => {
                     if (textInputFossued) setModalVisible(false);
-                    setTextInputFossued(false);
+                    setTextInputFossued(true);
                   }}
                   style={styles.icon2}
                   type="material"
@@ -60,6 +63,9 @@ export default function SearchComponent() {
                 placeholder="Tìm kiếm..."
                 autoFocus={false}
                 ref={textInput}
+                onFocus={() => {
+                  setTextInputFossued(true);
+                }}
               />
               <Animatable.View>
                 <Icon
