@@ -47,7 +47,7 @@ export default function SearchScreen({navigation}) {
             showsverticalScrollIndicator={false}
             numColumns={2}
             ListHeaderComponent={
-              <Text style={styles.listHeader}>Top Categories</Text>
+              <Text style={styles.listHeader}>Danh mục hàng đầu</Text>
             }
             ListFooterComponent={<Footer />}
           />
@@ -87,7 +87,7 @@ const Footer = () => {
           showsverticalScrollIndicator={false}
           numColumns={2}
           ListHeaderComponent={
-            <Text style={styles.listHeader}>More categories</Text>
+            <Text style={styles.listHeader}>Các danh mục khác</Text>
           }
         />
       </View>
