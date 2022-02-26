@@ -14,6 +14,7 @@ import {useNavigation} from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import {Colors} from '../global/styles';
 import {filterData} from '../global/Data';
+import filter from 'lodash/filter';
 
 export default function SearchComponent() {
   const navigation = useNavigation();
@@ -22,6 +23,22 @@ export default function SearchComponent() {
   const [textInputFossued, setTextInputFossued] = useState(true);
   const [data, setData] = useState([...filterData]);
   const textInput = useRef(0);
+
+  const contains = ({name}, query) => {
+    if (name.includes(query)) {
+      return true;
+    }
+    return false;
+  };
+
+  const handleSearch = text => {
+    const dataS = filter(filterData, userSearch => {
+      return contains(userSearch, text);
+    });
+
+    setData([...dataS]);
+  };
+
   return (
     <View style={{alignItems: 'center'}}>
       <TouchableWithoutFeedback
@@ -66,6 +83,10 @@ export default function SearchComponent() {
                 onFocus={() => {
                   setTextInputFossued(true);
                 }}
+                onBlur={() => {
+                  setTextInputFossued(false);
+                }}
+                onChangeText={handleSearch}
               />
               <Animatable.View>
                 <Icon
