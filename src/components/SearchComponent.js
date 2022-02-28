@@ -8,10 +8,11 @@ import {
   TextInput,
   FlatList,
   TouchableOpacity,
+  Keyboard,
 } from 'react-native';
-import {Icon} from 'react-native-elements';
-import {useNavigation} from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
+import {useNavigation} from '@react-navigation/native';
+import {Icon} from 'react-native-elements';
 import {Colors} from '../global/styles';
 import {filterData} from '../global/Data';
 import filter from 'lodash/filter';
@@ -19,9 +20,9 @@ import filter from 'lodash/filter';
 export default function SearchComponent() {
   const navigation = useNavigation();
 
+  const [data, setData] = useState([...filterData]);
   const [modalVisible, setModalVisible] = useState(false);
   const [textInputFossued, setTextInputFossued] = useState(true);
-  const [data, setData] = useState([...filterData]);
   const textInput = useRef(0);
 
   const contains = ({name}, query) => {
@@ -53,17 +54,17 @@ export default function SearchComponent() {
             iconStyle={{marginLeft: 5}}
             size={32}
           />
-          <Text style={{fontSize: 15}}>Bạn đang tìm kiếm cái gì?</Text>
+          <Text style={{fontSize: 15}}>What are you looking for ?</Text>
         </View>
       </TouchableWithoutFeedback>
-      <Modal animationType="fade" tranparent="false" visible={modalVisible}>
+
+      <Modal animationType="fade" transparent={false} visible={modalVisible}>
         <View style={styles.modal}>
           <View style={styles.view1}>
             <View style={styles.TextInput}>
               <Animatable.View
-                anaimation={textInputFossued ? 'fadeInRight' : 'fadeInLeft'}
-                duration={400}></Animatable.View>
-              <Animatable.View>
+                animation={textInputFossued ? 'fadeInRight' : 'fadeInLeft'}
+                duration={400}>
                 <Icon
                   name={textInputFossued ? 'arrow-back' : 'search'}
                   onPress={() => {
@@ -75,9 +76,10 @@ export default function SearchComponent() {
                   iconStyle={{marginRight: 5}}
                 />
               </Animatable.View>
+
               <TextInput
                 style={{width: '90%'}}
-                placeholder="Tìm kiếm..."
+                placeholder=""
                 autoFocus={false}
                 ref={textInput}
                 onFocus={() => {
@@ -88,7 +90,10 @@ export default function SearchComponent() {
                 }}
                 onChangeText={handleSearch}
               />
-              <Animatable.View>
+
+              <Animatable.View
+                animation={textInputFossued ? 'fadeInLeft' : ''}
+                duration={400}>
                 <Icon
                   name={textInputFossued ? 'cancel' : null}
                   iconStyle={{color: Colors.grey3}}
@@ -96,6 +101,7 @@ export default function SearchComponent() {
                   style={{marginRight: -10}}
                   onPress={() => {
                     textInput.current.clear();
+                    // handleSearch()
                   }}
                 />
               </Animatable.View>

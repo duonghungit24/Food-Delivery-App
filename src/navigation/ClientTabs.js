@@ -6,6 +6,7 @@ import MyAccountScreen from '../screens/MyAccountScreen';
 import SearchScreen from '../screens/SearchScreen';
 import {Colors} from '../global/styles';
 import {Icon} from 'react-native-elements';
+import {ClientStack} from './ClientStack';
 
 const ClientTabs = createBottomTabNavigator();
 export default function RootClientTabs() {
@@ -13,18 +14,15 @@ export default function RootClientTabs() {
     <ClientTabs.Navigator
       screenOptions={({route}) => ({
         tabBarIcon: ({color, size}) => {
-          let iconName
+          let iconName;
           if (route.name === 'HomeScreen') {
-                iconName = 'home'
+            iconName = 'home';
           } else if (route.name === 'SearchScreen') {
-                iconName = 'search'
-          }
-          else if(route.name === 'MyOrder')
-          {
-              iconName = 'view-list'
-          }
-          else {
-              iconName = 'person'
+            iconName = 'search';
+          } else if (route.name === 'MyOrder') {
+            iconName = 'view-list';
+          } else {
+            iconName = 'person';
           }
           return (
             <Icon type="material" name={iconName} size={size} color={color} />
@@ -32,8 +30,8 @@ export default function RootClientTabs() {
         },
       })}
       tabBarOptions={{
-        activeTintColor: Colors.buttons,    
-        labelStyle : {marginBottom: 5},   
+        activeTintColor: Colors.buttons,
+        labelStyle: {marginBottom: 5},
       }}>
       <ClientTabs.Screen
         name="HomeScreen"
@@ -42,7 +40,7 @@ export default function RootClientTabs() {
       />
       <ClientTabs.Screen
         name="SearchScreen"
-        component={SearchScreen}
+        component={ClientStack}
         options={{tabBarLabel: 'Search'}}
       />
       <ClientTabs.Screen
