@@ -76,7 +76,7 @@ export const restaurantsData = [
     farAway: '21.2',
     businessAddress: '22 Bessie street, Cape Town',
     images:
-      'https://images.foody.vn/res/g91/908398/prof/s280x175/image-2bcc5a5a-200910115809.jpeg',
+      'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     averageReview: 4.9,
     numberOfReview: 272,
     coordinates: {lat: -26.1888612, lng: 28.246325},
@@ -88,17 +88,20 @@ export const restaurantsData = [
       {
         name: 'Hand cut chips',
         price: 29.3,
-        image: 'https://bukasapics.s3.us-east-2.amazonaws.com/plate5.png',
+        image:
+          'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
       },
       {
         name: 'Big Mac',
         price: 50.8,
-        image: 'https://bukasapics.s3.us-east-2.amazonaws.com/plate4.png',
+        image:
+          'https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
       {
         name: 'Chicken Burger',
         price: 70,
-        image: 'https://bukasapics.s3.us-east-2.amazonaws.com/plate3.png',
+        image:
+          'https://images.pexels.com/photos/326279/pexels-photo-326279.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
     ],
     id: 0,
@@ -109,7 +112,7 @@ export const restaurantsData = [
     farAway: '12.7',
     businessAddress: '22 Bessie street, Cape Town',
     images:
-      'https://images.foody.vn/res/g12/111511/prof/s280x175/foody-upload-api-foody-mobile-co-cf620bbc-210612103035.jpeg',
+      'https://images.pexels.com/photos/2097090/pexels-photo-2097090.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     averageReview: 4.3,
     numberOfReview: 306,
     coordinates: {lat: -26.1891648, lng: 28.2441808},
@@ -121,17 +124,20 @@ export const restaurantsData = [
       {
         name: 'Hand cut chips',
         price: 29.3,
-        image: 'https://bukasapics.s3.us-east-2.amazonaws.com/plate5.png',
+        image:
+          'https://images.pexels.com/photos/1350511/pexels-photo-1350511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
       {
         name: 'Big Mac',
         price: 50.8,
-        image: 'https://bukasapics.s3.us-east-2.amazonaws.com/plate4.png',
+        image:
+          'https://images.pexels.com/photos/2383398/pexels-photo-2383398.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
       {
         name: 'Chicken Burger',
         price: 70,
-        image: 'https://bukasapics.s3.us-east-2.amazonaws.com/plate3.png',
+        image:
+          'https://images.pexels.com/photos/2092903/pexels-photo-2092903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
     ],
     id: 1,
@@ -142,7 +148,7 @@ export const restaurantsData = [
     farAway: '5',
     businessAddress: ' 17 Olivia Rd, Johannesburg',
     images:
-      'https://images.foody.vn/res/g103/1021427/prof/s280x175/image-438ea3af-200910115809.jpeg',
+      'https://images.pexels.com/photos/6763279/pexels-photo-6763279.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     coordinates: {lat: -26.1886781, lng: 28.244879},
     averageReview: 4.9,
     numberOfReview: 1272,
@@ -154,17 +160,20 @@ export const restaurantsData = [
       {
         name: 'Hand cut chips',
         price: 29.3,
-        image: 'https://bukasapics.s3.us-east-2.amazonaws.com/plate5.png',
+        image:
+          'https://images.pexels.com/photos/958546/pexels-photo-958546.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
       {
         name: 'Big Mac',
         price: 50.8,
-        image: 'https://bukasapics.s3.us-east-2.amazonaws.com/plate4.png',
+        image:
+          'https://images.pexels.com/photos/2297961/pexels-photo-2297961.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
       {
         name: 'Chicken Burger',
         price: 70,
-        image: 'https://bukasapics.s3.us-east-2.amazonaws.com/plate3.png',
+        image:
+          'https://images.pexels.com/photos/709823/pexels-photo-709823.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
     ],
     id: 2,
@@ -175,7 +184,7 @@ export const restaurantsData = [
     farAway: '7',
     businessAddress: ' 15 Atlas Rd, Kempton Park',
     images:
-      'https://images.foody.vn/res/g4/35881/prof/s280x175/image-01ee9499-210614102959.jpeg',
+      'https://images.pexels.com/photos/772513/pexels-photo-772513.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     averageReview: 4.7,
     numberOfReview: 700,
     coordinates: {lat: -26.1845336, lng: 28.2481691},
@@ -187,17 +196,20 @@ export const restaurantsData = [
       {
         name: 'Hand cut chips',
         price: 29.3,
-        image: 'https://bukasapics.s3.us-east-2.amazonaws.com/plate5.png',
+        image:
+          'https://images.pexels.com/photos/1707917/pexels-photo-1707917.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
       {
         name: 'Big Mac',
         price: 50.8,
-        image: 'https://bukasapics.s3.us-east-2.amazonaws.com/plate4.png',
+        image:
+          'https://images.pexels.com/photos/3493579/pexels-photo-3493579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
       {
         name: 'Chicken Burger',
         price: 70,
-        image: 'https://bukasapics.s3.us-east-2.amazonaws.com/plate3.png',
+        image:
+          'https://images.pexels.com/photos/812868/pexels-photo-812868.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       },
     ],
     id: 3,
