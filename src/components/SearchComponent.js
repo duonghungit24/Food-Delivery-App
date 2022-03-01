@@ -54,7 +54,7 @@ export default function SearchComponent() {
             iconStyle={{marginLeft: 5}}
             size={32}
           />
-          <Text style={{fontSize: 15}}>What are you looking for ?</Text>
+          <Text style={{fontSize: 15}}>Bạn đang tìm kiếm món gì?</Text>
         </View>
       </TouchableWithoutFeedback>
 

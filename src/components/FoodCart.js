@@ -19,7 +19,10 @@ export default function FoodCard({
     <TouchableOpacity>
       <View style={{...styles.cardView, width: screenWidth}}>
         <View style={{...styles.image}}>
-          <Image source={{uri: images}} style={{...styles.image,width: screenWidth-1.5}} />
+          <Image
+            source={{uri: images}}
+            style={{...styles.image, width: screenWidth - 1.5}}
+          />
         </View>
         <View>
           <View>
@@ -38,14 +41,14 @@ export default function FoodCard({
               />
               <Text style={styles.min}>{farAway} Min</Text>
             </View>
-            <View >
+            <View>
               <Text style={styles.address}>{businessAddress}</Text>
             </View>
           </View>
         </View>
         <View style={styles.review}>
           <Text style={styles.average}>{averageReview}</Text>
-          <Text style={styles.numberOfReview}>{numberOfReview} reviews</Text>
+          <Text style={styles.numberOfReview}>{numberOfReview} Đánh giá</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -71,9 +74,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   location: {
-    flex:1,
+    flex: 1,
     flexDirection: 'row',
-    paddingVertical:4,
+    paddingVertical: 4,
   },
   distance: {
     flex: 4,

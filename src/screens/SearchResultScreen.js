@@ -35,7 +35,7 @@ const SearchResultScreen = ({navigation, route}) => {
           ListHeaderComponent={
             <View>
               <Text style={styles.listHeader}>
-                {restaurantsData.length} Result for {route.params.item}
+                {restaurantsData.length} Kết quả cho {route.params.item}
               </Text>
             </View>
           }
