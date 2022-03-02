@@ -9,7 +9,7 @@ export const Colors = {
   cardbackground: 'white',
   statusbar: '#ff8c52',
   headerText: 'white',
-  lighGreen: '#66DF48'
+  lighGreen: '#66DF48',
 };
 
 export const Parameters = {
@@ -40,15 +40,40 @@ export const Parameters = {
     borderWidth: 1,
     borderColor: '#ff8c52',
     height: 40,
-    paddingHorizontal: 20,    
+    paddingHorizontal: 20,
   },
-  createBtnTitle : {
+  createBtnTitle: {
     color: '#ff8c52',
     fontSize: 16,
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
 };
 
 export const Title = {color: '#ff8c52', fontSize: 20, fontWeight: '700'};
+export const fonts = {
+  ios: {
+    regular: 'System',
+    light: 'System',
+    lightItalic: 'System',
+    bold: 'System',
+    boldItalic: 'System',
+    black: 'System',
+    blackItalic: 'System',
+  },
+  android: {
+    regular: 'Roboto',
+    italic: 'Roboto-Italic',
+    thin: 'Roboto-Thin',
+    thinItalic: 'Roboto-ThinItalic',
+    light: 'Roboto-Light',
+    lightItalic: 'Roboto-LightItalic',
+    medium: 'Roboto-Medium',
+    mediumItalic: 'Roboto-MediumItalic',
+    bold: 'Roboto-Bold',
+    boldItalic: 'Roboto-BoldItalic',
+    condensed: 'RobotoCondensed-Regular',
+    condensedItalic: 'RobotoCondensed-Italic',
+  },
+};
