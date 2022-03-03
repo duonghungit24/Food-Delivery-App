@@ -89,6 +89,7 @@ const Footer = () => {
           ListHeaderComponent={
             <Text style={styles.listHeader}>Các danh mục khác</Text>
           }
+          ListFooterComponent={<Footer />}
         />
       </View>
     </View>
