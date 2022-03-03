@@ -5,6 +5,7 @@ import {specialData, menuData} from '../../global/Data';
 import {Colors, fonts} from '../../global/styles';
 
 const MenuScreen = ({navigation, restaurant, onPress}) => {
+  const handlePress = () => {};
   return (
     <View style={styles.container}>
       <View>

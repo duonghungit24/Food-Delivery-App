@@ -20,6 +20,7 @@ const initialLayout = SCREEN_WIDTH;
 
 const RestaurantHomeScreen = ({navigation, route}) => {
   const {id, restaurant} = route.params;
+  const [modalVisible, setModalVisible] = useState(false);
   const [routes] = useState([
     {key: 'first', title: 'THỰC ĐƠN'},
     {key: 'second', title: 'THÔNG TIN'},
@@ -47,6 +48,7 @@ const RestaurantHomeScreen = ({navigation, route}) => {
 
   const menuPressed = () => {
     navigation.navigate('MenuProductScreen');
+    // setModalVisible(true);
   };
 
   return (
@@ -136,6 +138,17 @@ const RestaurantHomeScreen = ({navigation, route}) => {
           </View>
         </View>
       </TouchableOpacity>
+      {/* <Modal visible={modalVisible} animation="slide">
+        <Icon
+          name="arrow-left"
+          type="material-community"
+          color={Colors.black}
+          size={25}
+          onPress={() => {
+            setModalVisible(false);
+          }}
+        />
+      </Modal> */}
     </View>
   );
 };

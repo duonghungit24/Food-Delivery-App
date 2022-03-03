@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, Image, StyleSheet} from 'react-native';
-import {colors} from '../global/styles';
+import {Colors} from '../global/styles';
 
 export default function MenuCard({productName, price, image, productDetails}) {
   return (
@@ -42,19 +42,19 @@ const styles = StyleSheet.create({
 
   text1: {
     fontSize: 15,
-    color: colors.grey1,
+    color: Colors.grey1,
     fontWeight: 'bold',
   },
 
   text2: {
     fontSize: 15,
-    color: colors.grey3,
+    color: Colors.grey3,
     marginRight: 2,
   },
 
   text3: {
     fontSize: 15,
-    color: colors.black,
+    color: Colors.black,
   },
 
   image: {flex: 1},

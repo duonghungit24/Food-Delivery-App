@@ -1,33 +1,28 @@
 import React, {useState, useRef} from 'react';
-import {View, Text, StyleSheet, TextInput,Alert} from 'react-native';
+import {View, Text, StyleSheet, TextInput, Alert} from 'react-native';
 import {Colors, Parameters, Title} from '../../global/styles';
 import {Icon, Button, SocialIcon} from 'react-native-elements';
 import {Formik} from 'formik';
 import auth from '@react-native-firebase/auth';
 import Header from '../../components/Header';
 import * as Animatable from 'react-native-animatable';
-import { values } from 'lodash';
+import {values} from 'lodash';
 export default function SignInScreen({navigation}) {
   const [textInput2Focused, setTextInput2Focused] = useState(false);
   const textInput1 = useRef(1);
   const textInput2 = useRef(2);
 
   async function signIn({email, password}, navigation) {
-    if(email == '' || password == '')
-    {
+    if (email == '' || password == '') {
       Alert.alert('Bạn phải nhập tài khoản và mật khẩu');
-    }
-
-    else {
-
-      try{
+    } else {
+      try {
         const user = await auth().signInWithEmailAndPassword(email, password);
-        if(user) {
-          navigation.navigate('DrawerNavigator')
+        if (user) {
+          navigation.navigate('DrawerNavigator');
         }
-      }
-      catch(err) {
-          Alert.alert(err.message);
+      } catch (err) {
+        Alert.alert(err.message);
       }
     }
   }
@@ -42,9 +37,9 @@ export default function SignInScreen({navigation}) {
         <Text style={styles.text2}>đăng nhập với tài khoản của bạn</Text>
       </View>
       <Formik
-        initialValues={{email: '', password: ''}}
+        initialValues={{email: 'foodapp@gmail.com', password: '12345678'}}
         onSubmit={values => {
-          signIn(values, navigation)
+          signIn(values, navigation);
         }}>
         {({handleChange, handleSubmit, values}) => (
           <View>
@@ -55,7 +50,8 @@ export default function SignInScreen({navigation}) {
                   placeholder="Email"
                   ref={textInput1}
                   onChangeText={handleChange('email')}
-                  vale={values.email}
+                  value={values.email}
+                  // value={'foodapp@gmail.com'}
                 />
               </View>
               <View style={styles.TextInput2}>
@@ -67,6 +63,7 @@ export default function SignInScreen({navigation}) {
                 <TextInput
                   style={{width: '80%'}}
                   placeholder="Password"
+                  secureTextEntry={true}
                   ref={textInput2}
                   onFocus={() => {
                     setTextInput2Focused(false);
@@ -75,7 +72,8 @@ export default function SignInScreen({navigation}) {
                     setTextInput2Focused(true);
                   }}
                   onChangeText={handleChange('password')}
-                  vale={values.password}
+                  value={values.password}
+                  // value={'12345678'}
                 />
                 <Animatable.View
                   animation={textInput2Focused ? '' : 'fadeInLeft'}
