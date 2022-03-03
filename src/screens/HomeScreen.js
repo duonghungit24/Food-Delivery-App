@@ -22,7 +22,7 @@ export default function HomeScreen({navigation}) {
   const [indexCheck, setIndexCheck] = useState('0');
   return (
     <View style={styles.container}>
-      <HomeHeader navigation={navigation}/>
+      <HomeHeader navigation={navigation} />
       <ScrollView
         stickyHeaderIndices={[0]} // dùng cái này để khi scroll cái component đầu tiên k bị scroll
         showsVerticalScrollIndicator={true} // show thanh scroll
@@ -36,7 +36,7 @@ export default function HomeScreen({navigation}) {
                   ...styles.btnSelect,
                   backgroundColor: selected ? Colors.buttons : Colors.grey5,
                 }}>
-                <Text>Delivery</Text>
+                <Text>V.chuyển</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity
@@ -74,7 +74,7 @@ export default function HomeScreen({navigation}) {
                   size={26}
                   style={{marginRight: 10}}
                 />
-                <Text>Now</Text>
+                <Text>Bây giờ</Text>
               </View>
             </View>
             <View style={{marginRight: 10}}>

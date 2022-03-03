@@ -36,12 +36,12 @@ export default class PreferenceScreen extends Component {
             <Image
               style={styles.backgroundImage}
               source={{
-                uri: 'https://bukasapics.s3.us-east-2.amazonaws.com/macdo.png',
+                uri: 'https://images.foody.vn/res/g77/764004/prof/s576x330/foody-upload-api-foody-mobile-16-190620102532.jpg',
               }}
             />
           </View>
           <View style={styles.bar}>
-            <Text style={styles.title}>Choose a preference</Text>
+            <Text style={styles.title}>Bạn chọn cái gì?</Text>
           </View>
           <View style={styles.view12}>
             <Icon
@@ -59,9 +59,9 @@ export default class PreferenceScreen extends Component {
             <Text style={styles.text2}>{details}</Text>
           </View>
           <View style={styles.view2}>
-            <Text style={styles.text3}>Choose a meal type</Text>
+            <Text style={styles.text3}>Chọn loại bữa ăn</Text>
             <View style={styles.view3}>
-              <Text style={styles.text4}>REQUIRED</Text>
+              <Text style={styles.text4}>YÊU CẦU</Text>
             </View>
           </View>
           <View style={styles.view4}>
@@ -76,7 +76,7 @@ export default class PreferenceScreen extends Component {
                 />
                 <Text style={styles.text5}>- - - - -</Text>
               </View>
-              <Text style={styles.text6}>R{price.toFixed(2)}</Text>
+              <Text style={styles.text6}>{price.toFixed(2)}k</Text>
             </View>
           </View>
           <View>
@@ -98,7 +98,7 @@ export default class PreferenceScreen extends Component {
                             this.state.preference.indexOf(item)
                           ]
                         }{' '}
-                        REQUIRED
+                        YÊU CẦU
                       </Text>
                     </View>
                   )}
@@ -120,7 +120,7 @@ export default class PreferenceScreen extends Component {
                           </Text>
                         </View>
                         <Text style={styles.text6}>
-                          R{items.price.toFixed(2)}
+                          {items.price.toFixed(2)}k
                         </Text>
                       </View>
                     </View>
@@ -131,7 +131,7 @@ export default class PreferenceScreen extends Component {
           </View>
         </ScrollView>
         <View style={styles.view13}>
-          <Text style={styles.text11}>Quantity</Text>
+          <Text style={styles.text11}>Số lượng</Text>
         </View>
         <View style={styles.view14}>
           <View style={styles.view15}>
@@ -156,7 +156,7 @@ export default class PreferenceScreen extends Component {
         </View>
         <View style={styles.view17}>
           <View style={styles.view18}>
-            <Text style={styles.text10}>Add 1 to Cart R78.21</Text>
+            <Text style={styles.text10}>Thêm 1 vào giỏ hàng 78.21k</Text>
           </View>
         </View>
       </View>
@@ -176,11 +176,11 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: Colors.buttons,
     overflow: 'hidden',
-    height: 180, //HEADER_MAX_HEIGHT,
+    height: 180,
   },
   backgroundImage: {
-    width: '100%', //null,
-    height: 180, //HEADER_MAX_HEIGHT,
+    width: '100%',
+    height: 180,
     resizeMode: 'cover',
   },
   bar: {
@@ -200,11 +200,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 40,
   },
-  scrollViewContent: {
-    // iOS uses content inset, which acts like padding.
-    //paddingTop: Platform.OS !== 'ios' ?
-    //HEADER_MAX_HEIGHT : 0,
-  },
+  scrollViewContent: {},
   row: {
     height: 40,
     margin: 16,

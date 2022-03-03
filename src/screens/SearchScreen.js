@@ -8,6 +8,7 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
   ImageBackgroundComponent,
+  TouchableOpacity,
 } from 'react-native';
 import SearchComponent from '../components/SearchComponent';
 import {filterData2} from '../global/Data';
@@ -22,11 +23,10 @@ export default function SearchScreen({navigation}) {
       <View style={{marginTop: 10}}>
         <View>
           <FlatList
-            style={{}}
             data={filterData2}
             keyExtractor={item => item.id}
             renderItem={({item, index}) => (
-              <TouchableWithoutFeedback
+              <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('SearchResultScreen', {item: item.name});
                 }}>
@@ -41,7 +41,7 @@ export default function SearchScreen({navigation}) {
                     </View>
                   </ImageBackground>
                 </View>
-              </TouchableWithoutFeedback>
+              </TouchableOpacity>
             )}
             horizontal={false}
             showsverticalScrollIndicator={false}
@@ -68,7 +68,9 @@ const Footer = () => {
           renderItem={({item, index}) => (
             <TouchableWithoutFeedback
               onPress={() => {
-                navigation.navigate('SearchResultScreen', {item: item.name});
+                navigation.navigate('SearchResultScreen', {
+                  item: item.name,
+                });
               }}>
               <View style={styles.imageView}>
                 <ImageBackground
@@ -89,7 +91,6 @@ const Footer = () => {
           ListHeaderComponent={
             <Text style={styles.listHeader}>Các danh mục khác</Text>
           }
-          ListFooterComponent={<Footer />}
         />
       </View>
     </View>
