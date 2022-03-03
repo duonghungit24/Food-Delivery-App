@@ -13,14 +13,22 @@ export default function SignInScreen({navigation}) {
   const textInput2 = useRef(2);
 
   async function signIn({email, password}, navigation) {
-    try{
-      const user = await auth().signInWithEmailAndPassword(email, password);
-      if(user) {
-        navigation.navigate('DrawerNavigator')
-      }
+    if(email == '' || password == '')
+    {
+      Alert.alert('Bạn phải nhập tài khoản và mật khẩu');
     }
-    catch(err) {
-        Alert.alert(err.message);
+
+    else {
+
+      try{
+        const user = await auth().signInWithEmailAndPassword(email, password);
+        if(user) {
+          navigation.navigate('DrawerNavigator')
+        }
+      }
+      catch(err) {
+          Alert.alert(err.message);
+      }
     }
   }
   return (
