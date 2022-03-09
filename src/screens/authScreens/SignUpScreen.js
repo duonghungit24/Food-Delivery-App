@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView, TextInput} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, TextInput,Alert} from 'react-native';
 import Header from '../../components/Header';
 import {Formik} from 'formik';
 import {Colors , Parameters} from '../../global/styles';
 import {Icon, Button} from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
+import auth from '@react-native-firebase/auth';
 const initialValues = {
   phone_number: '',
   name: '',
@@ -15,6 +16,29 @@ const initialValues = {
 };
 
 const SignUpScreen = ({navigation}) => {
+  async function signUp(values) {
+    const {email, password} = values;
+    try
+    {
+      await auth().createUserWithEmailAndPassword(email, password);
+      console.log("created");
+    }
+    catch (error) {
+      if(error.code === 'auth/email-already-in-use'){
+        Alert.alert(
+          'That email address is already inuse'
+        )
+      }
+      if(error.code === 'auth/invalid-email'){
+        Alert.alert(
+          'That email address is invalid'
+        )
+      }
+      else{
+        Alert.alert(error.message)
+      }
+    }
+ }
   return (
     <View style={styles.container}>
       <Header title="Tạo Tài Khoản" type="arrow-left" navigation={navigation} />
@@ -22,7 +46,7 @@ const SignUpScreen = ({navigation}) => {
         <View style={styles.view1}>
           <Text style={styles.text1}>Đăng kí</Text>
         </View>
-        <Formik initialValues={initialValues}>
+        <Formik initialValues={initialValues} onSubmit={(values) => signUp(values)} >
           {props => (
             <View style={styles.view2}>
               <View>
@@ -137,8 +161,7 @@ const SignUpScreen = ({navigation}) => {
         </View>
       </ScrollView>
     </View>
-  );
-};
+)};
 
 export default SignUpScreen;
 
