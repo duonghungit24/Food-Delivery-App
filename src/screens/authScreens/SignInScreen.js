@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useContext} from 'react';
 import {View, Text, StyleSheet, TextInput, Alert} from 'react-native';
 import {Colors, Parameters, Title} from '../../global/styles';
 import {Icon, Button, SocialIcon} from 'react-native-elements';
@@ -6,20 +6,23 @@ import {Formik} from 'formik';
 import auth from '@react-native-firebase/auth';
 import Header from '../../components/Header';
 import * as Animatable from 'react-native-animatable';
-import {values} from 'lodash';
+import { SignInContext } from '../../contexts/authContext';
 export default function SignInScreen({navigation}) {
+  
+  const {dispatchSignedIn} = useContext(SignInContext)
+
   const [textInput2Focused, setTextInput2Focused] = useState(false);
   const textInput1 = useRef(1);
   const textInput2 = useRef(2);
 
-  async function signIn({email, password}, navigation) {
+  async function signIn({email, password}) {
     if (email == '' || password == '') {
       Alert.alert('Bạn phải nhập tài khoản và mật khẩu');
     } else {
       try {
         const user = await auth().signInWithEmailAndPassword(email, password);
         if (user) {
-          navigation.navigate('DrawerNavigator');
+            dispatchSignedIn({type:"UPDATE_SIGN_IN", payload:{userToken:"signed-in"}})
         }
       } catch (err) {
         Alert.alert(err.message);
@@ -37,9 +40,9 @@ export default function SignInScreen({navigation}) {
         <Text style={styles.text2}>đăng nhập với tài khoản của bạn</Text>
       </View>
       <Formik
-        initialValues={{email: 'foodapp@gmail.com', password: '12345678'}}
+        initialValues={{email: '', password: ''}}
         onSubmit={values => {
-          signIn(values, navigation);
+          signIn(values);
         }}>
         {({handleChange, handleSubmit, values}) => (
           <View>
