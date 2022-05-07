@@ -7,6 +7,7 @@ import auth from '@react-native-firebase/auth';
 import Header from '../../components/Header';
 import * as Animatable from 'react-native-animatable';
 import { SignInContext } from '../../contexts/authContext';
+import { utils } from '../../utils';
 export default function SignInScreen({navigation}) {
   
   const {dispatchSignedIn} = useContext(SignInContext)
@@ -16,9 +17,13 @@ export default function SignInScreen({navigation}) {
   const textInput2 = useRef(2);
 
   async function signIn({email, password}) {
-    if (email == '' || password == '') {
-      Alert.alert('Bạn phải nhập tài khoản và mật khẩu');
-    } else {
+    if (email == '' || !email.trim() || password == '' || !password.trim()) {
+      utils.showFlashMessage("Thông báo" , "Không được thông tin bắt buộc" , "warning");
+    }
+    else if(utils.validateEmail(email)){
+      utils.showFlashMessage("Thông báo" ,"Vui lòng nhập đúng định dạng email", "warning")
+    } 
+    else {
       try {
         const user = await auth().signInWithEmailAndPassword(email, password);
         if (user) {
