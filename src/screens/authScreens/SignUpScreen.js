@@ -1,11 +1,21 @@
-import React from 'react';
-import {StyleSheet, Text, View, ScrollView, TextInput,Alert} from 'react-native';
+import React, {useState} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TextInput,
+  Alert,
+  ToastAndroid,
+} from 'react-native';
 import Header from '../../components/Header';
 import {Formik} from 'formik';
-import {Colors , Parameters} from '../../global/styles';
+import {Colors, Parameters} from '../../global/styles';
 import {Icon, Button} from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
 import auth from '@react-native-firebase/auth';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+
 const initialValues = {
   phone_number: '',
   name: '',
@@ -16,29 +26,23 @@ const initialValues = {
 };
 
 const SignUpScreen = ({navigation}) => {
+  const [showPass, setShowPass] = useState(true);
   async function signUp(values) {
     const {email, password} = values;
-    try
-    {
+    try {
       await auth().createUserWithEmailAndPassword(email, password);
-      console.log("created");
-    }
-    catch (error) {
-      if(error.code === 'auth/email-already-in-use'){
-        Alert.alert(
-          'That email address is already inuse'
-        )
+      console.log('created');
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        Alert.alert('Địa chỉ Email đã được sử dụng');
       }
-      if(error.code === 'auth/invalid-email'){
-        Alert.alert(
-          'That email address is invalid'
-        )
-      }
-      else{
-        Alert.alert(error.message)
+      if (error.code === 'auth/invalid-email') {
+        Alert.alert('Địa chỉ Email không hợp lệ');
+      } else {
+        Alert.alert(error.message);
       }
     }
- }
+  }
   return (
     <View style={styles.container}>
       <Header title="Tạo Tài Khoản" type="arrow-left" navigation={navigation} />
@@ -46,7 +50,9 @@ const SignUpScreen = ({navigation}) => {
         <View style={styles.view1}>
           <Text style={styles.text1}>Đăng kí</Text>
         </View>
-        <Formik initialValues={initialValues} onSubmit={(values) => signUp(values)} >
+        <Formik
+          initialValues={initialValues}
+          onSubmit={values => signUp(values)}>
           {props => (
             <View style={styles.view2}>
               <View>
@@ -108,16 +114,17 @@ const SignUpScreen = ({navigation}) => {
                   placeholder="Mật khẩu"
                   autoFocus={false}
                   onChangeText={props.handleChange('password')}
+                  secureTextEntry={showPass}
                   value={props.values.password}
                 />
-                <Animatable.View>
+                <TouchableOpacity onPress={() => setShowPass(!showPass)}>
                   <Icon
-                    name="visibility-off"
+                    name={showPass ? 'visibility' : 'visibility-off'}
                     type="material"
                     color={Colors.grey3}
-                    style={{marginRight: 5}}
+                    style={{marginRight: 10}}
                   />
-                </Animatable.View>
+                </TouchableOpacity>
               </View>
               <View style={styles.view15}>
                 <Text style={styles.text3}>
@@ -161,7 +168,8 @@ const SignUpScreen = ({navigation}) => {
         </View>
       </ScrollView>
     </View>
-)};
+  );
+};
 
 export default SignUpScreen;
 
@@ -281,7 +289,7 @@ const styles = StyleSheet.create({
 
   view20: {marginTop: 5},
 
-  view21: {justifyContent:'flex-end', width:'50%', left:'46%',},
+  view21: {justifyContent: 'flex-end', width: '50%', left: '46%'},
   button2: {
     backgroundColor: Colors.background3,
     alignContent: 'center',
@@ -302,8 +310,8 @@ const styles = StyleSheet.create({
     marginTop: -3,
   },
   text6: {
-     justifyContent: 'flex-start',
-     left: 20,
-     fontSize: 16
-  }
+    justifyContent: 'flex-start',
+    left: 20,
+    fontSize: 16,
+  },
 });
