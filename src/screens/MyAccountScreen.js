@@ -1,11 +1,24 @@
-import {ceil, create} from 'lodash';
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Header from '../components/Header';
 import {Colors} from '../global/styles';
 import {Icon} from 'react-native-elements';
+import {SignInContext} from '../contexts/authContext';
+import {utils} from '../utils';
 
 export default function MyAccountScreen({navigation}) {
+  const {signedIn} = useContext(SignInContext);
+  const {dispatchSignedIn} = useContext(SignInContext);
+  const logOut = () => {
+    if (signedIn.userToken) {
+      utils.showAlertConfirm('Thông báo', 'Bạn có muốn đăng xuất ?', () => {
+        dispatchSignedIn({
+          type: 'UPDATE_SIGN_IN',
+          payload: {userToken: null},
+        });
+      });
+    }
+  };
   return (
     <View style={{flex: 1}}>
       <Header title="Tài khoản" type="arrow-left" navigation={navigation} />
@@ -31,7 +44,7 @@ export default function MyAccountScreen({navigation}) {
         </View>
 
         {/* Name */}
-        <Text style={{fontSize: 17, color: Colors.grey1, fontWeight: '670'}}>
+        <Text style={{fontSize: 17, color: Colors.grey1, fontWeight: '700'}}>
           Khánh Vũ
         </Text>
         <TouchableOpacity>
@@ -67,7 +80,7 @@ export default function MyAccountScreen({navigation}) {
               <Text
                 style={{
                   color: '#CE4C2E',
-                  textDecorationLine: 'underline line',
+                  textDecorationLine: 'underline',
                 }}>
                 Edit
               </Text>
@@ -97,7 +110,7 @@ export default function MyAccountScreen({navigation}) {
               <Text
                 style={{
                   color: '#CE4C2E',
-                  textDecorationLine: 'underline line',
+                  textDecorationLine: 'underline',
                 }}>
                 Edit
               </Text>
@@ -182,7 +195,8 @@ export default function MyAccountScreen({navigation}) {
           <TouchableOpacity
             style={{
               flexDirection: 'row',
-            }}>
+            }}
+            onPress={logOut}>
             <Icon
               name="logout"
               type="material-community"

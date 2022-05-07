@@ -6,13 +6,9 @@ import {Formik} from 'formik';
 import auth from '@react-native-firebase/auth';
 import Header from '../../components/Header';
 import * as Animatable from 'react-native-animatable';
-import { SignInContext } from '../../contexts/authContext';
-import { utils } from '../../utils';
-export default function SignInScreen({navigation}) {
-  
-  const {dispatchSignedIn} = useContext(SignInContext)
 import {SignInContext} from '../../contexts/authContext';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import { utils } from '../../utils';
 import FormModal from '../../components/FormModal';
 
 export default function SignInScreen({navigation}) {
@@ -25,7 +21,7 @@ export default function SignInScreen({navigation}) {
     if (email == '' || !email.trim() || password == '' || !password.trim()) {
       utils.showFlashMessage("Thông báo" , "Không được thông tin bắt buộc" , "warning");
     }
-    else if(utils.validateEmail(email)){
+    else if(!utils.validateEmail(email)){
       utils.showFlashMessage("Thông báo" ,"Vui lòng nhập đúng định dạng email", "warning")
     } 
     else {
@@ -38,7 +34,7 @@ export default function SignInScreen({navigation}) {
           });
         }
       } catch (err) {
-        Alert.alert(err.message);
+         utils.showFlashMessage("Thông báo" ,"Thông tin tài khoản không đúng", "warning")
       }
     }
   }
@@ -55,7 +51,7 @@ export default function SignInScreen({navigation}) {
       <Formik
         initialValues={{
           email: 'khanhphamsj@gmail.com',
-          password: 'Khanh0124',
+          password: '123456',
         }}
         onSubmit={values => {
           signIn(values);
