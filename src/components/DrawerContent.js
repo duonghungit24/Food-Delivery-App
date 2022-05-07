@@ -113,25 +113,26 @@ export default function DrawerContent(props) {
             <Text style={styles.darkThemeText}>Nền tối</Text>
             <View style={{paddingLeft: 10}}>
               <Switch
-                  trackColor={{false: '#767577', true: '#81b0ff'}}
-                  thumbColor = '#f4f3f4' 
+                trackColor={{false: '#767577', true: '#81b0ff'}}
+                thumbColor="#f4f3f4"
               />
             </View>
           </View>
         </View>
       </DrawerContentScrollView>
       <DrawerItem
-          label="Đăng xuất"
-          icon={({color, size}) => (
-            <Icon
-              type="material-community"
-              name="logout-variant"
-              color={color}
-              size={size}
-            />
-          )}
-            style = {{marginBottom: 10}}
-        />
+        label="Đăng xuất"
+        // onPress={() => }
+        icon={({color, size}) => (
+          <Icon
+            type="material-community"
+            name="logout-variant"
+            color={color}
+            size={size}
+          />
+        )}
+        style={{marginBottom: 10}}
+      />
     </View>
   );
 }

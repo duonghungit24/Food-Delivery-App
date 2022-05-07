@@ -6,15 +6,16 @@ import {Formik} from 'formik';
 import auth from '@react-native-firebase/auth';
 import Header from '../../components/Header';
 import * as Animatable from 'react-native-animatable';
-import { SignInContext } from '../../contexts/authContext';
-export default function SignInScreen({navigation}) {
-  
-  const {dispatchSignedIn} = useContext(SignInContext)
+import {SignInContext} from '../../contexts/authContext';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import FormModal from '../../components/FormModal';
 
+export default function SignInScreen({navigation}) {
+  const {dispatchSignedIn} = useContext(SignInContext);
+  const [showPass, setShowPass] = useState(true);
   const [textInput2Focused, setTextInput2Focused] = useState(false);
   const textInput1 = useRef(1);
   const textInput2 = useRef(2);
-
   async function signIn({email, password}) {
     if (email == '' || password == '') {
       Alert.alert('Bạn phải nhập tài khoản và mật khẩu');
@@ -22,7 +23,10 @@ export default function SignInScreen({navigation}) {
       try {
         const user = await auth().signInWithEmailAndPassword(email, password);
         if (user) {
-            dispatchSignedIn({type:"UPDATE_SIGN_IN", payload:{userToken:"signed-in"}})
+          dispatchSignedIn({
+            type: 'UPDATE_SIGN_IN',
+            payload: {userToken: 'signed-in'},
+          });
         }
       } catch (err) {
         Alert.alert(err.message);
@@ -40,33 +44,43 @@ export default function SignInScreen({navigation}) {
         <Text style={styles.text2}>đăng nhập với tài khoản của bạn</Text>
       </View>
       <Formik
-        initialValues={{email: '', password: ''}}
+        initialValues={{
+          email: 'khanhphamsj@gmail.com',
+          password: 'Khanh0124',
+        }}
         onSubmit={values => {
           signIn(values);
         }}>
         {({handleChange, handleSubmit, values}) => (
           <View>
             <View style={{marginTop: 20}}>
-              <View>
+              <View style={styles.TextInput1}>
+                <Animatable.View
+                  style={{alignSelf: 'center', marginRight: 5}}
+                  animation={textInput2Focused ? '' : 'fadeInLeft'}
+                  duration={400}>
+                  <Icon name="email" color={Colors.grey3} type="material" />
+                </Animatable.View>
                 <TextInput
-                  style={styles.TextInput1}
-                  placeholder="Email"
+                  // style={styles.TextInput1}
+                  style={{width: '80%'}}
+                  placeholder="Nhập Email"
                   ref={textInput1}
                   onChangeText={handleChange('email')}
                   value={values.email}
-                  // value={'foodapp@gmail.com'}
+                  // value={'khanhphamsj@gmail.com'}
                 />
               </View>
               <View style={styles.TextInput2}>
                 <Animatable.View
                   animation={textInput2Focused ? '' : 'fadeInLeft'}
                   duration={400}>
-                  <Icon name="lock" color={Colors.grey3} type="material"></Icon>
+                  <Icon name="lock" color={Colors.grey3} type="material" />
                 </Animatable.View>
                 <TextInput
                   style={{width: '80%'}}
-                  placeholder="Password"
-                  secureTextEntry={true}
+                  placeholder="Nhập Mật khẩu"
+                  secureTextEntry={showPass}
                   ref={textInput2}
                   onFocus={() => {
                     setTextInput2Focused(false);
@@ -76,17 +90,19 @@ export default function SignInScreen({navigation}) {
                   }}
                   onChangeText={handleChange('password')}
                   value={values.password}
-                  // value={'12345678'}
+                  // value="Khanh0124"
                 />
                 <Animatable.View
                   animation={textInput2Focused ? '' : 'fadeInLeft'}
                   duration={400}>
-                  <Icon
-                    style={{marginRight: 10}}
-                    name="visibility-off"
-                    color={Colors.grey3}
-                    type="material"
-                  />
+                  <TouchableOpacity onPress={() => setShowPass(!showPass)}>
+                    <Icon
+                      style={{marginRight: 20}}
+                      name="visibility-off"
+                      color={Colors.grey3}
+                      type="material"
+                    />
+                  </TouchableOpacity>
                 </Animatable.View>
               </View>
             </View>
@@ -103,9 +119,11 @@ export default function SignInScreen({navigation}) {
       </Formik>
 
       <View style={{alignItems: 'center'}}>
-        <Text style={{...styles.text1, textDecorationLine: 'underline'}}>
-          Quên mật khẩu ?
-        </Text>
+        <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+          <Text style={{...styles.text1, textDecorationLine: 'underline'}}>
+            Quên mật khẩu ?
+          </Text>
+        </TouchableOpacity>
       </View>
       <View style={{alignItems: 'center', marginTop: 20, marginBottom: 20}}>
         <Text style={{fontSize: 18, fontWeight: 'bold'}}>Hoặc</Text>
@@ -163,6 +181,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   TextInput1: {
+    flexDirection: 'row',
     borderWidth: 1,
     borderColor: '#86939e',
     marginHorizontal: 20,
@@ -180,6 +199,13 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     paddingLeft: 15,
     alignItems: 'center',
+  },
+  email: {
+    fontSize: 24,
+    padding: 0,
+    marginBottom: 0,
+    marginLeft: 2,
+    marginRight: 5,
   },
   button: {
     marginHorizontal: 20,

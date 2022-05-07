@@ -5,11 +5,13 @@ export const Colors = {
   grey3: '#86939e',
   grey4: '#bdc6cf',
   grey5: '#e1e8ee',
+  grey6: '#e6e6e6',
   CardComment: '#86939e',
   cardbackground: 'white',
   statusbar: '#ff8c52',
   headerText: 'white',
   lighGreen: '#66DF48',
+  tetxGreen: '#00930A',
 };
 
 export const Parameters = {
