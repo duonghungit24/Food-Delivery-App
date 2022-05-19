@@ -3,7 +3,7 @@ import { View , Text} from 'react-native'
 const SplashScreen = ({navigation}) => {
     useEffect(() => {
         setTimeout(() => {
-            navigation.navigate('SignInWellcomeScreen')
+            navigation.navigate('RootStack')
         },3000)
     })
     return (

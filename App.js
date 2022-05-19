@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet, StatusBar} from 'react-native';
 import {Colors} from './src/global/styles'
 import RootStack from './src/navigation/RootNavigator';
+import SplashStack from './src/navigation/SplashStack';
 import FlashMessage from 'react-native-flash-message';
 import { SignInContextProvider } from './src/contexts/authContext';
 const App = () => {
@@ -9,7 +10,7 @@ const App = () => {
     <SignInContextProvider>
       <View style={styles.container}>
         <StatusBar  barStyle='light-content' backgroundColor={Colors.statusbar}/>
-        <RootStack />
+        <SplashStack />
         <FlashMessage titleStyle={{ fontSize: 16, fontWeight: '700' }} position="top" />
       </View>
     </SignInContextProvider>
