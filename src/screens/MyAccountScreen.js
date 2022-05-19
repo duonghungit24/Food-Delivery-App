@@ -3,20 +3,16 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Header from '../components/Header';
 import {Colors} from '../global/styles';
 import {Icon} from 'react-native-elements';
-import {SignInContext} from '../contexts/authContext';
+import {useUserContext} from '../contexts/authContext';
 import {utils} from '../utils';
 
 export default function MyAccountScreen({navigation}) {
-  const {signedIn} = useContext(SignInContext);
-  const {dispatchSignedIn} = useContext(SignInContext);
+  // const {signedIn} = useContext(SignInContext);
+  // const {dispatchSignedIn} = useContext(SignInContext);
+  const { logoutUser , user } = useUserContext();
   const logOut = () => {
-    if (signedIn.userToken) {
-      utils.showAlertConfirm('Thông báo', 'Bạn có muốn đăng xuất ?', () => {
-        dispatchSignedIn({
-          type: 'UPDATE_SIGN_IN',
-          payload: {userToken: null},
-        });
-      });
+    if (user) {
+      utils.showAlertConfirm('Thông báo', 'Bạn có muốn đăng xuất ?', logoutUser);
     }
   };
   return (
