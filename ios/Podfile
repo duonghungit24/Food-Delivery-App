@@ -16,6 +16,10 @@ target 'Food_Delivery_App' do
 
   pod 'react-native-pager-view', :path => '../node_modules/react-native-pager-view'
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+
   target 'Food_Delivery_AppTests' do
     inherit! :complete
     # Pods for testing

@@ -5,8 +5,22 @@ import {Colors} from '../global/styles';
 import {Icon} from 'react-native-elements';
 import {SignInContext} from '../contexts/authContext';
 import {utils} from '../utils';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 export default function MyAccountScreen({navigation}) {
+  const openLibrary = async () => {
+    const result = await launchImageLibrary({
+      mediaType: 'photo',
+      quality: 1,
+      maxHeight: 200,
+      maxWidth: 200,
+      selectionLimit: 1,
+      includeBase64: true,
+      presentationStyle: 'fullScreen',
+    });
+    console.log(result);
+  };
+
   const {signedIn} = useContext(SignInContext);
   const {dispatchSignedIn} = useContext(SignInContext);
   const logOut = () => {
@@ -26,6 +40,7 @@ export default function MyAccountScreen({navigation}) {
         {/* avatar */}
         <View style={styles.avt}>
           <TouchableOpacity
+            onPress={openLibrary}
             style={{
               width: 85,
               height: 85,
