@@ -5,7 +5,7 @@ import LottieView from 'lottie-react-native';
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('SignInWellcomeScreen');
+      navigation.navigate('RootStack');
     }, 2800);
   });
   return (

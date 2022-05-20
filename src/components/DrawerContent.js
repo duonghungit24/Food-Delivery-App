@@ -7,7 +7,20 @@ import {
 } from '@react-navigation/drawer';
 import {Avatar, Icon} from 'react-native-elements';
 import {Colors} from '../global/styles';
+import {useUserContext} from '../contexts/authContext';
+import {utils} from '../utils';
 export default function DrawerContent(props) {
+  const {logoutUser, user, getInforUser} = useUserContext();
+  const logOut = () => {
+    if (user) {
+      utils.showAlertConfirm(
+        'Thông báo',
+        'Bạn có muốn đăng xuất ?',
+        logoutUser,
+      );
+    }
+  };
+  console.log(getInforUser());
   return (
     <View style={styles.container}>
       <DrawerContentScrollView {...props}>
@@ -26,10 +39,10 @@ export default function DrawerContent(props) {
                   fontSize: 18,
                   fontWeight: 'bold',
                 }}>
-                Dương Hùng
+                {getInforUser().name}
               </Text>
               <Text style={{color: Colors.cardbackground, fontSize: 14}}>
-                hungduong721@gmail.com
+                {getInforUser().email}
               </Text>
             </View>
           </View>
@@ -132,6 +145,7 @@ export default function DrawerContent(props) {
           />
         )}
         style={{marginBottom: 10}}
+        onPress={logOut}
       />
     </View>
   );
@@ -147,7 +161,7 @@ const styles = StyleSheet.create({
   },
   wrapperInfor: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   avatar: {

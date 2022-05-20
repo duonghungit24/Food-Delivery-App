@@ -13,8 +13,9 @@ import {Formik} from 'formik';
 import {Colors, Parameters} from '../../global/styles';
 import {Icon, Button} from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
-import auth from '@react-native-firebase/auth';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useUserContext} from '../../contexts/authContext';
+import {utils} from '../../utils';
 
 const initialValues = {
   phone_number: '',
@@ -22,27 +23,30 @@ const initialValues = {
   surname: '',
   password: '',
   email: '',
-  username: '',
 };
-
 const SignUpScreen = ({navigation}) => {
   const [showPass, setShowPass] = useState(true);
-  async function signUp(values) {
-    const {email, password} = values;
-    try {
-      await auth().createUserWithEmailAndPassword(email, password);
-      console.log('created');
-    } catch (error) {
-      if (error.code === 'auth/email-already-in-use') {
-        Alert.alert('Địa chỉ Email đã được sử dụng');
-      }
-      if (error.code === 'auth/invalid-email') {
-        Alert.alert('Địa chỉ Email không hợp lệ');
-      } else {
-        Alert.alert(error.message);
-      }
+  const {registerUser} = useUserContext();
+  const signUp = async values => {
+    const {email, password, surname, name, phone_number} = values;
+    const useName = `${surname} ${name}`;
+    if (email == '' || !email.trim() || password == '' || !password.trim()) {
+      utils.showFlashMessage(
+        'Thông báo',
+        'Không được để trống thông tin',
+        'warning',
+      );
+    } else if (!utils.validateEmail(email)) {
+      utils.showFlashMessage(
+        'Thông báo',
+        'Vui lòng nhập đúng định dạng email',
+        'warning',
+      );
+    } else {
+      // console.log(useName, password, email);
+      await registerUser(email, password, useName, phone_number);
     }
-  }
+  };
   return (
     <View style={styles.container}>
       <Header title="Tạo Tài Khoản" type="arrow-left" navigation={navigation} />

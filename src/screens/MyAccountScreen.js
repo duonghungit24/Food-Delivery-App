@@ -1,13 +1,15 @@
 import React, {useContext} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import Header from '../components/Header';
 import {Colors} from '../global/styles';
 import {Icon} from 'react-native-elements';
-import {SignInContext} from '../contexts/authContext';
+import {useUserContext} from '../contexts/authContext';
 import {utils} from '../utils';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {result} from 'lodash';
 
 export default function MyAccountScreen({navigation}) {
+  const {logoutUser, user, updateUserInfor, getInforUser} = useUserContext();
   const openLibrary = async () => {
     const result = await launchImageLibrary({
       mediaType: 'photo',
@@ -18,21 +20,28 @@ export default function MyAccountScreen({navigation}) {
       includeBase64: true,
       presentationStyle: 'fullScreen',
     });
-    console.log(result);
+    console.log(result.assets[0].uri);
+    updateUserInfor({name: 'Khánh Bầu trời', url: result.assets[0].uri})
+      .then(result => console.log('result', result))
+      .catch(err => console.log(err));
   };
-
-  const {signedIn} = useContext(SignInContext);
-  const {dispatchSignedIn} = useContext(SignInContext);
+  console.log(getInforUser());
   const logOut = () => {
-    if (signedIn.userToken) {
-      utils.showAlertConfirm('Thông báo', 'Bạn có muốn đăng xuất ?', () => {
-        dispatchSignedIn({
-          type: 'UPDATE_SIGN_IN',
-          payload: {userToken: null},
-        });
-      });
+    if (user) {
+      utils.showAlertConfirm(
+        'Thông báo',
+        'Bạn có muốn đăng xuất ?',
+        logoutUser,
+      );
     }
   };
+  const updateInfor = async () => {
+    const values = {name: 'Khánh Sky', url: ''};
+    updateUserInfor(values)
+      .then(result => console.log('result', result))
+      .catch(err => console.log(err));
+  };
+
   return (
     <View style={{flex: 1}}>
       <Header title="Tài khoản" type="arrow-left" navigation={navigation} />
@@ -49,6 +58,10 @@ export default function MyAccountScreen({navigation}) {
               backgroundColor: Colors.grey1 + '20',
               borderRadius: 50,
             }}>
+            <Image
+              source={{uri: getInforUser().url}}
+              style={{height: 50, width: 50}}
+            />
             <Icon
               name="folder-multiple-image"
               type="material-community"
@@ -60,9 +73,9 @@ export default function MyAccountScreen({navigation}) {
 
         {/* Name */}
         <Text style={{fontSize: 17, color: Colors.grey1, fontWeight: '700'}}>
-          Khánh Vũ
+          {getInforUser().name}
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={updateInfor}>
           <Text style={{fontSize: 17, color: Colors.tetxGreen}}>
             Chỉnh sửa tài khoản
           </Text>

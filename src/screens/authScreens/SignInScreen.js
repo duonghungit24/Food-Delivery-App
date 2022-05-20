@@ -1,4 +1,4 @@
-import React, {useState, useRef, useContext} from 'react';
+import React, {useState, useRef} from 'react';
 import {View, Text, StyleSheet, TextInput, Alert} from 'react-native';
 import {Colors, Parameters, Title} from '../../global/styles';
 import {Icon, Button, SocialIcon} from 'react-native-elements';
@@ -6,38 +6,33 @@ import {Formik} from 'formik';
 import auth from '@react-native-firebase/auth';
 import Header from '../../components/Header';
 import * as Animatable from 'react-native-animatable';
-import {SignInContext} from '../../contexts/authContext';
+import {useUserContext} from '../../contexts/authContext';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import { utils } from '../../utils';
-import FormModal from '../../components/FormModal';
+import {utils} from '../../utils';
 
 export default function SignInScreen({navigation}) {
-  const {dispatchSignedIn} = useContext(SignInContext);
+  const {signInUser} = useUserContext();
   const [showPass, setShowPass] = useState(true);
   const [textInput2Focused, setTextInput2Focused] = useState(false);
   const textInput1 = useRef(1);
   const textInput2 = useRef(2);
-  async function signIn({email, password}) {
+  const signIn = async ({email, password}) => {
     if (email == '' || !email.trim() || password == '' || !password.trim()) {
-      utils.showFlashMessage("Thông báo" , "Không được thông tin bắt buộc" , "warning");
+      utils.showFlashMessage(
+        'Thông báo',
+        'Không được để trống thông tin',
+        'warning',
+      );
+    } else if (!utils.validateEmail(email)) {
+      utils.showFlashMessage(
+        'Thông báo',
+        'Vui lòng nhập đúng định dạng email',
+        'warning',
+      );
+    } else {
+      signInUser(email, password);
     }
-    else if(!utils.validateEmail(email)){
-      utils.showFlashMessage("Thông báo" ,"Vui lòng nhập đúng định dạng email", "warning")
-    } 
-    else {
-      try {
-        const user = await auth().signInWithEmailAndPassword(email, password);
-        if (user) {
-          dispatchSignedIn({
-            type: 'UPDATE_SIGN_IN',
-            payload: {userToken: 'signed-in'},
-          });
-        }
-      } catch (err) {
-         utils.showFlashMessage("Thông báo" ,"Thông tin tài khoản không đúng", "warning")
-      }
-    }
-  }
+  };
   return (
     <View style={styles.container}>
       <Header title="Tài Khoản" type="arrow-left" navigation={navigation} />
@@ -51,7 +46,7 @@ export default function SignInScreen({navigation}) {
       <Formik
         initialValues={{
           email: 'khanhphamsj@gmail.com',
-          password: '123456',
+          password: '123456a',
         }}
         onSubmit={values => {
           signIn(values);
