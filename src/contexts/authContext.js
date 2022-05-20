@@ -81,12 +81,33 @@ export const SignInContextProvider = props => {
     setLoading(true);
     auth().signOut();
   };
+
+  const getInforUser = () => {
+    const user = auth().currentUser;
+    if(!user) return null;
+    return {
+      name: user.displayName,
+      email: user.email,
+      phone: user.phoneNumber,
+      url: user.url
+    }
+  }
+
+  const updateUserInfor = async(values) => {
+      const inforUpdate = {
+        displayName: values.name,
+        photoURL: value.url
+      }
+    await auth().currentUser.updateProfile(inforUpdate)
+  }
   const valueContext = {
     user,
     loading,
     registerUser,
     signInUser,
     logoutUser,
+    getInforUser,
+    updateUserInfor
   };
   return (
     <SignInContext.Provider value={valueContext}>

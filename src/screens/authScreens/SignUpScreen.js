@@ -25,7 +25,6 @@ const initialValues = {
   password: '',
   email: '',
 };
-
 const SignUpScreen = ({navigation}) => {
   const [showPass, setShowPass] = useState(true);
   const { registerUser } = useUserContext();
